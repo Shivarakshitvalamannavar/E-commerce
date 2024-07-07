@@ -10,13 +10,13 @@ import {
 } from 'firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: "YOur Api Key",
+    apiKey: "AIzaSyCB8fk_PrLmS6CKzTS87gzhsP1142McL_Q",
     authDomain: "facere-5960b.firebaseapp.com",
     projectId: "facere-5960b",
     storageBucket: "facere-5960b.appspot.com",
     messagingSenderId: "",
     appId: ""
-    Your config details that you can get fron firebase 
+
   };
   
   // Initialize Firebase
