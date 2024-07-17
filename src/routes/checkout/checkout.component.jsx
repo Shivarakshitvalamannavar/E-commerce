@@ -1,12 +1,20 @@
-import './checkout.styles.scss'
-import { CartContext } from '../../contexts/cart.context'
-import { useContext ,useEffect} from 'react'
-import CheckoutItem from '../../components/checkout-item/checkout-item'
-const Checkout = () =>{
+import { useContext ,useEffect} from 'react';
 
-    const {cartItems,total,cartTotal} =useContext(CartContext)
+import { CartContext } from '../../contexts/cart.context';
 
-    useEffect(() =>{
+import CheckoutItem from '../../components/checkout-item/checkout-item';
+
+import {
+      CheckoutContainer,
+      CheckoutHeader,
+      HeaderBlock,
+      Total,
+    } from './checkout.styles';
+
+    const Checkout = () => {
+      const {cartItems,total,cartTotal} =useContext(CartContext)
+
+      useEffect(() =>{
 
         // console.log('useEffect called')
         // const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -17,36 +25,31 @@ const Checkout = () =>{
 
 
     },[cartItems])
+      return (
+        <CheckoutContainer>
+          <CheckoutHeader>
+            <HeaderBlock>
+              <span>Product</span>
+            </HeaderBlock>
+            <HeaderBlock>
+              <span>Description</span>
+            </HeaderBlock>
+            <HeaderBlock>
+              <span>Quantity</span>
+            </HeaderBlock>
+            <HeaderBlock>
+              <span>Price</span>
+            </HeaderBlock>
+            <HeaderBlock>
+              <span>Remove</span>
+            </HeaderBlock>
+          </CheckoutHeader>
+          {cartItems.map((cartItem) => (
+            <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+          ))}
+          <Total>Total: ${total}</Total>
+        </CheckoutContainer>
+      );
+    };
 
-    return(
-        <div className='checkout-container'>
-            <div className='checkout-header'>
-                <div className='header-block'>
-                    <span>Product</span>
-                </div>
-                <div className='header-block'>
-                    <span>Description</span>
-                </div>
-                <div className='header-block'>
-                    <span>Quantity</span>
-                </div>
-                <div className='header-block'>
-                   <span>Price</span>
-                </div>
-                <div className='header-block'>
-                   <span>Remove</span>
-                </div>
-            </div>
-            
-            {cartItems.map((cartItem) =>(
-            
-            <CheckoutItem cartItem={cartItem} key={cartItem.id}/>
-                        
-            ))}
-            <span className='total'>Total: {total}</span>
-        </div>
-        
-    )
-}
-
-export default Checkout
+    export default Checkout;
